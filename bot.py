@@ -11,7 +11,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix='$')
 
 # this function randomly capitalizes letters in a sentence
-def capi_sentence(sentence):
+def random_caps(sentence):
     new_sentence = ""
     number = 0 #Dummy number for tracking
 
@@ -47,8 +47,8 @@ async def on_ready():
 @bot.command(name='mock')
 async def mock_func(ctx):
     channel = bot.get_channel(783045227321098301)
-    msg_history = await channel.history(limit=10).flatten() # create list of message objects 
+    msg_history = await channel.history(limit=10).flatten() # create list of message objects
     previous_message = msg_history[1].content # get the message beofore $mock command
-    await ctx.send(capi_sentence(previous_message))
+    await ctx.send(random_caps(previous_message))
 
 bot.run(TOKEN)
